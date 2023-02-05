@@ -1,0 +1,4 @@
+[
+  { "_id": "1", "login": "paulocer", "nome": "Paulo Sérgio da Soledade Cerqueira", "email": "paulocer@gmail.com", "perfil": "Administrador", "senha": "123"},
+  { "_id": "2", "login": "raphael", "nome": "Raphael Santos Cerqueira", "email": "rapha_new@hotmail.com", "perfil": "Comum", "senha": "123"}
+]
