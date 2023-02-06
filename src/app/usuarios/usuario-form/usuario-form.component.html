@@ -1,28 +1,30 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary">Usuário</mat-toolbar>
-    <form [formGroup]="formUsuario">
+    <mat-toolbar color="primary">Cadastro do Usuário</mat-toolbar>
+    <form [formGroup]="formUsuario" class="min-width">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Login" formControlName="login">
+        <input matInput placeholder="Login" formControlName="login" required="true">
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Nome" formControlName="nome">
+        <input matInput placeholder="Nome" formControlName="nome" required="true">
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="E-mail" formControlName="email">
+        <input matInput placeholder="E-mail" formControlName="email" required="true">
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <mat-select placeholder="Perfil" formControlName="perfil" required="true">
+        <mat-label>Perfil</mat-label>
+        <mat-select formControlName="perfil" required="true">
+          <mat-option label=null>Selecione um perfil</mat-option>
           <mat-option value="Administrador">Administrador</mat-option>
           <mat-option value="Comum">Comum</mat-option>
         </mat-select>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Senha" formControlName="senha">
+        <input matInput placeholder="Senha" formControlName="senha" required="true">
       </mat-form-field>
     </form>
   </mat-card-content>

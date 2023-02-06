@@ -9,8 +9,8 @@ import { Usuario } from './../model/usuario';
 })
 export class UsuariosService {
 
-  private readonly API = 'http://localhost:8085/api/usuarios';
-  // private readonly API = '/api/usuarios';
+  // private readonly API = 'http://localhost:8085/api/usuarios';
+  private readonly API = '/api/usuarios';
 
   constructor(private httpClient: HttpClient) { }
 
@@ -21,4 +21,9 @@ export class UsuariosService {
         delay(500),
       );
   }
+
+  save(record: Usuario) {
+    return this.httpClient.post<Usuario>(this.API, record);
+  }
+
 }
