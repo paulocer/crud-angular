@@ -5,8 +5,6 @@ import { AppMaterialModule } from './app-material/app-material.module';
 import { ErrorDialogComponent } from './components/error-dialog/error-dialog.component';
 import { PerfilPipe } from './pipes/perfil.pipe';
 
-
-
 @NgModule({
   declarations: [
     ErrorDialogComponent,
