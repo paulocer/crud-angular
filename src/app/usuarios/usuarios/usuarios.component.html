@@ -4,6 +4,7 @@
 
     <div *ngIf="usuarios$ | async as usuarios; else loading">
       <table mat-table [dataSource]="usuarios" class="mat-elevation-z8">
+        <caption></caption>
         <!-- Actions Column -->
         <ng-container matColumnDef="actions">
           <mat-header-cell *matHeaderCellDef="">

@@ -25,8 +25,6 @@ export class UsuariosComponent implements OnInit {
     private route: ActivatedRoute
 
   ) {
-    // this.usuarios = [];
-    // this.UsuariosService = new UsuariosService();
     this.usuarios$ = this.UsuariosService.list()
       .pipe(
         catchError(error => {
