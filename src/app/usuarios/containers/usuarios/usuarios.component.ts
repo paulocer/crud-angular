@@ -1,10 +1,11 @@
-import { UsuariosService } from './../services/usuarios.service';
-import { Usuario } from './../model/usuario';
 import { Component, OnInit } from '@angular/core';
-import { catchError, Observable, of } from 'rxjs';
 import { MatDialog } from '@angular/material/dialog';
-import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
 import { ActivatedRoute, Router } from '@angular/router';
+import { catchError, Observable, of } from 'rxjs';
+import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
+
+import { Usuario } from '../../model/usuario';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-usuarios',
@@ -14,7 +15,6 @@ import { ActivatedRoute, Router } from '@angular/router';
 export class UsuariosComponent implements OnInit {
 
   usuarios$: Observable<Usuario[]>;
-  displayedColumns = ['login', 'nome', 'email', 'perfil', 'senha', 'actions'];
 
   // UsuariosService: UsuariosService;
 

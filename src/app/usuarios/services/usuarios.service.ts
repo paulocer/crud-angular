@@ -18,11 +18,11 @@ export class UsuariosService {
     return this.httpClient.get<Usuario[]>(this.API)
       .pipe(
         first(),
-        delay(500),
+        delay(1000),
       );
   }
 
-  save(record: Usuario) {
+  save(record: Partial<Usuario>) {
     return this.httpClient.post<Usuario>(this.API, record);
   }
 

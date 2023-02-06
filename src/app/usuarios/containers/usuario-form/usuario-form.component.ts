@@ -1,9 +1,9 @@
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
-import { FormBuilder, FormGroup } from '@angular/forms';
+import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 
-import { UsuariosService } from '../services/usuarios.service';
+import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
   selector: 'app-usuario-form',
@@ -13,20 +13,19 @@ import { UsuariosService } from '../services/usuarios.service';
 
 export class UsuarioFormComponent implements OnInit {
 
-  formUsuario: FormGroup;
+  formUsuario = this.formBuilder.group({
+    login: [''],
+    nome: [''],
+    email: [''],
+    perfil: [''],
+    senha: [''],
+  });
 
-  constructor(private formBuilder: FormBuilder,
+  constructor(private formBuilder: NonNullableFormBuilder,
     private service: UsuariosService,
     private snackBar: MatSnackBar,
     private location: Location) {
-    this.formUsuario = this.formBuilder.group({
-      login: [null],
-      nome: [null],
-      email: [null],
-      perfil: [null],
-      senha: [null],
-      hide: true,
-    })
+    // this.formUsuario 
   }
 
   ngOnInit(): void {
