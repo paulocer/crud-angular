@@ -1,35 +1,45 @@
 <mat-card>
   <mat-card-content>
     <mat-toolbar color="primary">Cadastro do Usuário</mat-toolbar>
-    <form [formGroup]="formUsuario" class="min-width">
+    <form #f="ngForm" [formGroup]="formUsuario" class="min-width" autocomplete="off" (ngSubmit)="onSubmit()">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Login" formControlName="login" required="true">
+        <input matInput placeholder="Login" formControlName="login" #login>
+        <mat-hint align="end">{{login.value.length}}/15</mat-hint>
+        <mat-error *ngIf="formUsuario.get('login')?.invalid">{{ getErrorMessage("login") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Nome" formControlName="nome" required="true">
+        <input matInput placeholder="Nome" formControlName="nome">
+        <mat-error *ngIf="formUsuario.get('nome')?.invalid">{{ getErrorMessage("nome") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="E-mail" formControlName="email" required="true">
+        <input matInput placeholder="E-mail" formControlName="email">
+        <mat-error *ngIf="formUsuario.get('email')?.invalid">{{ getErrorMessage("email") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <mat-label>Perfil</mat-label>
-        <mat-select formControlName="perfil" required="true">
+        <mat-select formControlName="perfil">
           <mat-option label=null>Selecione um perfil</mat-option>
           <mat-option value="Administrador">Administrador</mat-option>
           <mat-option value="Comum">Comum</mat-option>
         </mat-select>
+        <mat-error *ngIf="formUsuario.get('perfil')?.invalid">{{ getErrorMessage("perfil") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Senha" formControlName="senha" required="true">
+        <input matInput [type]="hide ? 'password' : 'text'" type="password" placeholder="Senha" formControlName="senha">
+        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
+          [attr.aria-pressed]="hide">
+          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
+        </button>
+        <mat-error *ngIf="formUsuario.get('senha')?.invalid">{{ getErrorMessage("senha") }}</mat-error>
       </mat-form-field>
     </form>
   </mat-card-content>
   <mat-card-actions>
-    <button mat-raised-button color="primary" (click)="onSubmit()">Salvar</button>
+    <button mat-raised-button color="primary" [disabled]="!f.valid" (click)="onSubmit()">Salvar</button>
     <button mat-raised-button (click)="onCancel()">Cancelar</button>
   </mat-card-actions>
 

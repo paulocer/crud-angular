@@ -5,21 +5,26 @@ import { Usuario } from '../../model/usuario';
 @Component({
   selector: 'app-usuarios-list',
   templateUrl: './usuarios-list.component.html',
-  styleUrls: ['./usuarios-list.component.scss']
+  styleUrls: ['./usuarios-list.component.scss'],
 })
 export class UsuariosListComponent implements OnInit {
-
   @Input() usuarios: Usuario[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
   @Output() remove = new EventEmitter(false);
 
-  readonly displayedColumns = ['login', 'nome', 'email', 'perfil', 'senha', 'actions'];
+  readonly displayedColumns = [
+    'login',
+    'nome',
+    'email',
+    'perfil',
+    'senha',
+    'actions',
+  ];
 
-  constructor() { }
+  constructor() {}
 
-  ngOnInit(): void {
-  }
+  ngOnInit(): void {}
 
   onAdd() {
     this.add.emit(true);
