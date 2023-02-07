@@ -2,6 +2,8 @@ import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
+import { ActivatedRoute } from '@angular/router';
+import { Usuario } from '../../model/usuario';
 
 import { UsuariosService } from '../../services/usuarios.service';
 
@@ -14,6 +16,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 export class UsuarioFormComponent implements OnInit {
 
   formUsuario = this.formBuilder.group({
+    _id: [''],
     login: [''],
     nome: [''],
     email: [''],
@@ -24,12 +27,21 @@ export class UsuarioFormComponent implements OnInit {
   constructor(private formBuilder: NonNullableFormBuilder,
     private service: UsuariosService,
     private snackBar: MatSnackBar,
-    private location: Location) {
+    private location: Location,
+    private route: ActivatedRoute) {
     // this.formUsuario 
   }
 
   ngOnInit(): void {
-
+    const usuario: Usuario = this.route.snapshot.data['usuario'];
+    this.formUsuario.setValue({
+      _id: usuario._id,
+      login: usuario.login,
+      nome: usuario.nome,
+      email: usuario.email,
+      perfil: usuario.perfil,
+      senha: usuario.senha
+    });
   }
 
   onSubmit() {

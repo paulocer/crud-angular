@@ -22,8 +22,23 @@ export class UsuariosService {
       );
   }
 
+  loadById(id: string) {
+    return this.httpClient.get<Usuario>(`${this.API}/${id}`);
+  }
+
   save(record: Partial<Usuario>) {
-    return this.httpClient.post<Usuario>(this.API, record);
+    if (record._id) {
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Usuario>) {
+    return this.httpClient.post<Usuario>(this.API, record).pipe(first());
+  }
+
+  private update(record: Partial<Usuario>) {
+    return this.httpClient.put<Usuario>(`${this.API}/${record._id}`, record).pipe(first());
   }
 
 }

@@ -1,10 +1,10 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary">Relação de Usuários</mat-toolbar>
+    <mat-toolbar color="primary">Usuários</mat-toolbar>
 
     <div class="column-flex mat-elevation-z8">
-      <app-usuarios-list *ngIf="usuarios$ | async as usuarios; else loading" [usuarios]="usuarios"
-        (add)="onAdd()"></app-usuarios-list>
+      <app-usuarios-list *ngIf="usuarios$ | async as usuarios; else loading" [usuarios]="usuarios" (add)="onAdd()"
+        (edit)="onEdit($event)"></app-usuarios-list>
 
       <ng-template #loading>
         <div class="loading-spinner">
