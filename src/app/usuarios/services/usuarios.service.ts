@@ -41,4 +41,8 @@ export class UsuariosService {
     return this.httpClient.put<Usuario>(`${this.API}/${record._id}`, record).pipe(first());
   }
 
+  public remove(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
+  }
+
 }

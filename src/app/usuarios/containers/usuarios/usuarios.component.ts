@@ -1,5 +1,6 @@
 import { Component, OnInit } from '@angular/core';
 import { MatDialog } from '@angular/material/dialog';
+import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute, Router } from '@angular/router';
 import { catchError, Observable, of } from 'rxjs';
 import { ErrorDialogComponent } from 'src/app/shared/components/error-dialog/error-dialog.component';
@@ -14,7 +15,7 @@ import { UsuariosService } from '../../services/usuarios.service';
 })
 export class UsuariosComponent implements OnInit {
 
-  usuarios$: Observable<Usuario[]>;
+  usuarios$: Observable<Usuario[]> | null = null;
 
   // UsuariosService: UsuariosService;
 
@@ -22,9 +23,14 @@ export class UsuariosComponent implements OnInit {
     private UsuariosService: UsuariosService,
     public dialog: MatDialog,
     public router: Router,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private snackBar: MatSnackBar
 
   ) {
+    this.refresh();
+  }
+
+  refresh() {
     this.usuarios$ = this.UsuariosService.list()
       .pipe(
         catchError(error => {
@@ -52,4 +58,13 @@ export class UsuariosComponent implements OnInit {
     this.router.navigate(['edit', usuario._id], { relativeTo: this.route });
   }
 
+  onRemove(usuario: Usuario) {
+    this.UsuariosService.remove(usuario._id).subscribe(
+      () => {
+        this.refresh();
+        this.snackBar.open('Usuário excluído com sucesso!', 'X', { duration: 5000, verticalPosition: 'top', horizontalPosition: 'center' })
+      },
+      () => this.onError('Erro ao tentar excluir o usuário.')
+    );
+  }
 }

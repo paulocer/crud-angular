@@ -12,6 +12,7 @@ export class UsuariosListComponent implements OnInit {
   @Input() usuarios: Usuario[] = [];
   @Output() add = new EventEmitter(false);
   @Output() edit = new EventEmitter(false);
+  @Output() remove = new EventEmitter(false);
 
   readonly displayedColumns = ['login', 'nome', 'email', 'perfil', 'senha', 'actions'];
 
@@ -28,4 +29,7 @@ export class UsuariosListComponent implements OnInit {
     this.edit.emit(usuario);
   }
 
+  onDelete(usuario: Usuario) {
+    this.remove.emit(usuario);
+  }
 }
