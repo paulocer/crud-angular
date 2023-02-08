@@ -65,7 +65,7 @@ export class UsuariosComponent implements OnInit {
           () => {
             this.refresh();
             this.snackBar.open('Usuário excluído com sucesso!', 'X', {
-              duration: 5000,
+              duration: 2500,
               verticalPosition: 'top',
               horizontalPosition: 'center',
             });

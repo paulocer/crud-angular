@@ -9,12 +9,14 @@
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Nome" formControlName="nome">
+        <input matInput placeholder="Nome" formControlName="nome" #nome>
+        <mat-hint align="end">{{nome.value.length}}/60</mat-hint>
         <mat-error *ngIf="formUsuario.get('nome')?.invalid">{{ getErrorMessage("nome") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="E-mail" formControlName="email">
+        <input matInput placeholder="E-mail" formControlName="email" #email>
+        <mat-hint align="end">{{email.value.length}}/30</mat-hint>
         <mat-error *ngIf="formUsuario.get('email')?.invalid">{{ getErrorMessage("email") }}</mat-error>
       </mat-form-field>
 
@@ -28,12 +30,9 @@
         <mat-error *ngIf="formUsuario.get('perfil')?.invalid">{{ getErrorMessage("perfil") }}</mat-error>
       </mat-form-field>
 
-      <mat-form-field class="full-width">
-        <input matInput [type]="hide ? 'password' : 'text'" type="password" placeholder="Senha" formControlName="senha">
-        <button mat-icon-button matSuffix (click)="hide = !hide" [attr.aria-label]="'Hide password'"
-          [attr.aria-pressed]="hide">
-          <mat-icon>{{hide ? 'visibility_off' : 'visibility'}}</mat-icon>
-        </button>
+      <mat-form-field class="full-width" appearance="fill">
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="senha" #senha>
+        <mat-hint align="end">{{senha.value.length}}/16</mat-hint>
         <mat-error *ngIf="formUsuario.get('senha')?.invalid">{{ getErrorMessage("senha") }}</mat-error>
       </mat-form-field>
     </form>
