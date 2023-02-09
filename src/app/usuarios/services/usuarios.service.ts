@@ -5,21 +5,16 @@ import { delay, first } from 'rxjs';
 import { Usuario } from './../model/usuario';
 
 @Injectable({
-  providedIn: 'root'
+  providedIn: 'root',
 })
 export class UsuariosService {
-
   // private readonly API = 'http://localhost:8085/api/usuarios';
   private readonly API = '/api/usuarios';
 
-  constructor(private httpClient: HttpClient) { }
+  constructor(private httpClient: HttpClient) {}
 
   list() {
-    return this.httpClient.get<Usuario[]>(this.API)
-      .pipe(
-        first(),
-        delay(1000),
-      );
+    return this.httpClient.get<Usuario[]>(this.API).pipe(first(), delay(1000));
   }
 
   loadById(id: string) {
@@ -27,6 +22,15 @@ export class UsuariosService {
   }
 
   save(record: Partial<Usuario>) {
+    console.log(record.login);
+    if (this.httpClient.get<Usuario>(`${this.API}/login/${record.login}`)) {
+      console.log(
+        this.httpClient.get<Usuario>(`${this.API}/login/${record.login}`)
+      );
+    } else {
+      console.log('Usuário não existe');
+    }
+
     if (record._id) {
       return this.update(record);
     }
@@ -38,11 +42,12 @@ export class UsuariosService {
   }
 
   private update(record: Partial<Usuario>) {
-    return this.httpClient.put<Usuario>(`${this.API}/${record._id}`, record).pipe(first());
+    return this.httpClient
+      .put<Usuario>(`${this.API}/${record._id}`, record)
+      .pipe(first());
   }
 
   public remove(id: string) {
     return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
-
 }

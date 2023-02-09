@@ -54,6 +54,11 @@ export class UsuarioFormComponent implements OnInit {
     });
   }
 
+  onHide(hide: boolean) {
+    this.hide = !hide;
+    return false;
+  }
+
   onSubmit() {
     this.service.save(this.formUsuario.value).subscribe(
       (result) => this.onSuccess(),
