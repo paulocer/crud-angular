@@ -5,12 +5,18 @@ const routes: Routes = [
   { path: '', pathMatch: 'full', redirectTo: 'usuarios' },
   {
     path: 'usuarios',
-    loadChildren: () => import('./usuarios/usuarios.module').then(m => m.UsuariosModule)
-  }
+    loadChildren: () =>
+      import('./usuarios/usuarios.module').then((m) => m.UsuariosModule),
+  },
+  {
+    path: 'enderecos',
+    loadChildren: () =>
+      import('./enderecos/enderecos.module').then((m) => m.EnderecosModule),
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forRoot(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class AppRoutingModule { }
+export class AppRoutingModule {}

@@ -8,13 +8,12 @@ import { Usuario } from './../model/usuario';
   providedIn: 'root',
 })
 export class UsuariosService {
-  // private readonly API = 'http://localhost:8085/api/usuarios';
   private readonly API = '/api/usuarios';
 
   constructor(private httpClient: HttpClient) {}
 
   list() {
-    return this.httpClient.get<Usuario[]>(this.API).pipe(first(), delay(1000));
+    return this.httpClient.get<Usuario[]>(this.API).pipe(first(), delay(500));
   }
 
   loadById(id: string) {

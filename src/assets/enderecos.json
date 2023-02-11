@@ -1,0 +1,35 @@
+[
+  {
+    "_id": "1",
+    "login": "paulocer",
+    "cep": "41940-360",
+    "logradouro": "Rua da Fonte do Boi",
+    "numero": "115",
+    "complemento": "Apto 303",
+    "bairro": "Rio Vermelho",
+    "cidade": "Salvador",
+    "uf": "BA"
+  },
+  {
+    "_id": "2",
+    "login": "raphael",
+    "cep": "40100-160",
+    "logradouro": "Rua Comendador José Alves Ferreira",
+    "numero": "138",
+    "complemento": "1º andar",
+    "bairro": "Garcia",
+    "cidade": "Salvador",
+    "uf": "BA"
+  },
+  {
+    "_id": "3",
+    "login": "paulocer",
+    "cep": "41940-660",
+    "logradouro": "Rua Lucaia",
+    "numero": "337",
+    "complemento": "Sala 601",
+    "bairro": "Rio Vermelho",
+    "cidade": "Salvador",
+    "uf": "BA"
+  }
+]
