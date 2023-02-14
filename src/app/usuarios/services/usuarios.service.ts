@@ -20,6 +20,10 @@ export class UsuariosService {
     return this.httpClient.get<Usuario>(`${this.API}/${id}`);
   }
 
+  loadByLogin(login: string) {
+    return this.httpClient.get<Usuario>(`${this.API}/${login}`);
+  }
+
   save(record: Partial<Usuario>) {
     console.log(record.login);
     if (this.httpClient.get<Usuario>(`${this.API}/login/${record.login}`)) {

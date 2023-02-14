@@ -1,8 +1,10 @@
+import { HttpClient } from '@angular/common/http';
 import { Location } from '@angular/common';
 import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
+import { map } from 'rxjs';
 
 import { Endereco } from '../../model/endereco';
 import { EnderecosService } from '../../service/enderecos.service';
@@ -51,7 +53,8 @@ export class EnderecoFormComponent implements OnInit {
     private service: EnderecosService,
     private snackBar: MatSnackBar,
     private location: Location,
-    private route: ActivatedRoute
+    private route: ActivatedRoute,
+    private httpClient: HttpClient
   ) {
     // this.formEndereco
   }
@@ -96,21 +99,18 @@ export class EnderecoFormComponent implements OnInit {
   consultaCEP(cep: any) {
     //Nova variável "cep" somente com dígitos.
     cep = cep.replace(/\D/g, '');
-    console.log('1 - ' + cep);
     //Verifica se campo cep possui valor informado.
     if (cep != '') {
       //Expressão regular para validar o CEP.
       let validacep = /^\d{8}$/;
-      console.log('2 - ' + cep);
       //Valida o formato do CEP.
-      //      if (validacep.test(cep)) {
-      //        this.httpClient
-      //          .get(`//viacep.com.br/ws/${cep}/json`)
-      //          .pipe(map((dados: any) => dados))
-      //          .subscribe((dados) => console.log(dados));
-      //        console.log('3 - ' + cep);
-      //      }
-      console.log('4 - ' + cep);
+      if (validacep.test(cep)) {
+        //  this.httpClient
+        //    .get(`//viacep.com.br/ws/${cep}/json`)
+        //    .pipe(map((dados: any) => dados))
+        //    .subscribe((dados) => console.log(dados));
+        console.log('Consultado CEP: ' + cep);
+      }
     }
   }
 
