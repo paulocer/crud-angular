@@ -13,14 +13,14 @@ import { UsuariosListComponent } from './components/usuarios-list/usuarios-list.
   declarations: [
     UsuariosComponent,
     UsuarioFormComponent,
-    UsuariosListComponent
+    UsuariosListComponent,
   ],
   imports: [
     CommonModule,
     UsuariosRoutingModule,
     AppMaterialModule,
     SharedModule,
-    ReactiveFormsModule
-  ]
+    ReactiveFormsModule,
+  ],
 })
-export class UsuariosModule { }
+export class UsuariosModule {}

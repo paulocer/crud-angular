@@ -8,11 +8,44 @@ import { Endereco } from '../model/endereco';
   providedIn: 'root',
 })
 export class EnderecosService {
-  private readonly API = 'http://localhost:8085/api/enderecos';
+  private readonly API = '/api/enderecos';
 
   constructor(private httpClient: HttpClient) {}
 
   list() {
     return this.httpClient.get<Endereco[]>(this.API).pipe(first(), delay(500));
+  }
+
+  loadById(id: string) {
+    return this.httpClient.get<Endereco>(`${this.API}/${id}`);
+  }
+  save(record: Partial<Endereco>) {
+    console.log(record.login);
+    if (this.httpClient.get<Endereco>(`${this.API}/login/${record.login}`)) {
+      console.log(
+        this.httpClient.get<Endereco>(`${this.API}/login/${record.login}`)
+      );
+    } else {
+      console.log('Endereço não existe.');
+    }
+
+    if (record._id) {
+      return this.update(record);
+    }
+    return this.create(record);
+  }
+
+  private create(record: Partial<Endereco>) {
+    return this.httpClient.post<Endereco>(this.API, record).pipe(first());
+  }
+
+  private update(record: Partial<Endereco>) {
+    return this.httpClient
+      .put<Endereco>(`${this.API}/${record._id}`, record)
+      .pipe(first());
+  }
+
+  public remove(id: string) {
+    return this.httpClient.delete(`${this.API}/${id}`).pipe(first());
   }
 }

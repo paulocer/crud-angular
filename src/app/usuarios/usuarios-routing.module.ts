@@ -7,12 +7,20 @@ import { UsuarioResolver } from './guards/usuario.resolver';
 
 const routes: Routes = [
   { path: '', component: UsuariosComponent },
-  { path: 'new', component: UsuarioFormComponent, resolve: { usuario: UsuarioResolver } },
-  { path: 'edit/:id', component: UsuarioFormComponent, resolve: { usuario: UsuarioResolver } }
+  {
+    path: 'new',
+    component: UsuarioFormComponent,
+    resolve: { usuario: UsuarioResolver },
+  },
+  {
+    path: 'edit/:id',
+    component: UsuarioFormComponent,
+    resolve: { usuario: UsuarioResolver },
+  },
 ];
 
 @NgModule({
   imports: [RouterModule.forChild(routes)],
-  exports: [RouterModule]
+  exports: [RouterModule],
 })
-export class UsuariosRoutingModule { }
+export class UsuariosRoutingModule {}

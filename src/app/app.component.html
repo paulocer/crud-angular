@@ -1,4 +1,21 @@
 <mat-toolbar color="primary">
-  <span>Residência UFBA - Exercício 01</span>
+  <nav class="navbar navbar-default">
+    <div class="container-fluid">
+
+      <div class="navbar-header">
+        <a class="navbar-brand" routerLink="">
+          <span>Residência UFBA - Exercício 01</span>
+        </a>
+        <span>
+          <a class="navbar-brand" routerLink="/usuarios">Lista de Usuários</a>
+        </span>
+        <span>
+          <a class="navbar-brand" routerLink="/enderecos">Lista de Endereços</a>
+        </span>
+      </div>
+    </div>
+  </nav>
 </mat-toolbar>
-<router-outlet></router-outlet>
+<div class="container">
+  <router-outlet></router-outlet>
+</div>

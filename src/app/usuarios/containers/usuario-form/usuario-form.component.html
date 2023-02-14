@@ -1,28 +1,28 @@
 <mat-card>
   <mat-card-content>
-    <mat-toolbar color="primary">Cadastro do Usuário</mat-toolbar>
+    <mat-toolbar color="primary">Usuário</mat-toolbar>
     <form #f="ngForm" [formGroup]="formUsuario" class="min-width" autocomplete="off" (ngSubmit)="onSubmit()">
       <mat-form-field class="full-width">
-        <input matInput placeholder="Login" formControlName="login" #login>
+        <input matInput placeholder="Login" formControlName="login" #login required>
         <mat-hint align="end">{{login.value.length}}/15</mat-hint>
         <mat-error *ngIf="formUsuario.get('login')?.invalid">{{ getErrorMessage("login") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="Nome" formControlName="nome" #nome>
+        <input matInput placeholder="Nome" formControlName="nome" #nome required>
         <mat-hint align="end">{{nome.value.length}}/60</mat-hint>
         <mat-error *ngIf="formUsuario.get('nome')?.invalid">{{ getErrorMessage("nome") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
-        <input matInput placeholder="E-mail" formControlName="email" #email>
+        <input matInput placeholder="E-mail" formControlName="email" #email required>
         <mat-hint align="end">{{email.value.length}}/30</mat-hint>
         <mat-error *ngIf="formUsuario.get('email')?.invalid">{{ getErrorMessage("email") }}</mat-error>
       </mat-form-field>
 
       <mat-form-field class="full-width">
         <mat-label>Perfil</mat-label>
-        <mat-select formControlName="perfil">
+        <mat-select formControlName="perfil" required>
           <mat-option label=null>Selecione um perfil</mat-option>
           <mat-option value="Administrador">Administrador</mat-option>
           <mat-option value="Comum">Comum</mat-option>
@@ -31,7 +31,7 @@
       </mat-form-field>
 
       <mat-form-field class="full-width" appearance="fill">
-        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="senha" #senha>
+        <input matInput [type]="hide ? 'password' : 'text'" placeholder="Senha" formControlName="senha" #senha required>
         <button mat-icon-button matSuffix (click)="onHide(hide)" [attr.aria-label]="'Hide password'"
           [attr.aria-pressed]="hide">
           <mat-icon>{{ hide ? 'visibility_off' : 'visibility' }}</mat-icon>

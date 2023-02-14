@@ -3,8 +3,8 @@ import { Component, OnInit } from '@angular/core';
 import { NonNullableFormBuilder, Validators } from '@angular/forms';
 import { MatSnackBar } from '@angular/material/snack-bar';
 import { ActivatedRoute } from '@angular/router';
-import { Usuario } from '../../model/usuario';
 
+import { Usuario } from '../../model/usuario';
 import { UsuariosService } from '../../services/usuarios.service';
 
 @Component({
@@ -60,10 +60,10 @@ export class UsuarioFormComponent implements OnInit {
   }
 
   onSubmit() {
-    this.service.save(this.formUsuario.value).subscribe(
-      (result) => this.onSuccess(),
-      (Error) => this.onError()
-    );
+    this.service.save(this.formUsuario.value).subscribe({
+      next: (result) => this.onSuccess(),
+      error: (Error) => this.onError(),
+    });
   }
 
   onCancel() {
